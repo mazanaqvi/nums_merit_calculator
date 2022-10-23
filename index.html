@@ -1,0 +1,230 @@
+<html>
+
+<head>
+    <title>NUMS Merit Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        input,
+        textarea {
+            outline: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #17b9d5;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-weight: 500;
+        }
+
+        form {
+            position: relative;
+            width: 80%;
+            border-radius: 30px;
+            background: #fff;
+        }
+
+        .form-left-decoration,
+        .form-right-decoration {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            border-radius: 20px;
+            background: #17b9d5;
+        }
+
+        .form-left-decoration {
+            bottom: 60px;
+            left: -30px;
+        }
+
+        .form-right-decoration {
+            top: 60px;
+            right: -30px;
+        }
+
+        .form-left-decoration:before,
+        .form-left-decoration:after,
+        .form-right-decoration:before,
+        .form-right-decoration:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            border-radius: 30px;
+            background: #fff;
+        }
+
+        .form-left-decoration:before {
+            top: -20px;
+        }
+
+        .form-left-decoration:after {
+            top: 20px;
+            left: 10px;
+        }
+
+        .form-right-decoration:before {
+            top: -20px;
+            right: 0;
+        }
+
+        .form-right-decoration:after {
+            top: 20px;
+            right: 10px;
+        }
+
+        .circle {
+            position: absolute;
+            bottom: 80px;
+            left: -55px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .form-inner {
+            padding: 40px;
+        }
+
+        .form-inner input,
+        .form-inner textarea {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 20px;
+            background: #d0dfe8;
+        }
+
+        .form-inner textarea {
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 20px;
+            border: none;
+            border-bottom: 4px solid #13515b;
+            background: #17b9d5;
+            font-size: 16px;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        button:hover {
+            background: #6ed7e9;
+        }
+
+        @media (min-width: 568px) {
+            form {
+                width: 60%;
+            }
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: center;
+            color: #17b9d5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="https://www.nearpeer.org/">
+            <img src="4.png" alt="Italian Trulli" width="300" height="300">
+        </a>
+
+    </div>
+    <form class="decor">
+        <div class="form-left-decoration"></div>
+        <div class="form-right-decoration"></div>
+        <div class="circle"></div>
+        <div class="form-inner">
+            <h2>NUMS Merit Calculator </h2>
+
+            <h3> Add your SSC, HSSC & NUMS scores to evaluate your </h3>
+            <h3>aggregate as per PMC aggregate formula for NUMS 2022.</h3>.
+            </p>
+            <b> SSC Marks</b>
+            <input type="number" id="ssc_marks" placeholder="SSC Marks">
+            <b>SSC Total Marks</b>
+
+            <input type="number" id="ssc_total_marks" placeholder="SSC Total Marks">
+            <b>HSSC Marks</b>
+
+            <input type="number" id="hssc_marks" placeholder="HSSC Marks">
+            <b>HSSC Total Marks</b>
+
+            <input type="number" id="hssc_total_marks" placeholder="HSSC Total Marks">
+            <b>NUMS Marks</b>
+
+            <input type="number" id="NUMS_marks" placeholder="NUMS Marks">
+            <b>NUMS Aggregate</b>
+
+            <input type="text" id="result" readonly>
+            <button type="button" onclick="calculate()">Calculate</button>
+
+        </div>
+    </form>
+    <script>
+
+        function calculate() {
+
+            var result = document.getElementById('result');
+            var ssc_marks = parseInt(document.getElementById('ssc_marks').value);
+            var ssc_total_marks = parseInt(document.getElementById('ssc_total_marks').value);
+            var hssc_marks = parseInt(document.getElementById('hssc_marks').value);
+            var hssc_total_marks = parseInt(document.getElementById('hssc_total_marks').value);
+            var NUMS_marks = parseInt(document.getElementById('NUMS_marks').value);
+            var ssc_percentage = (ssc_marks / ssc_total_marks) * 10;
+            var hssc_percentage = (hssc_marks / hssc_total_marks) * 40;
+            var NUMS_percentage = (NUMS_marks / 150) * 50;
+            var total_percentage = 0;
+            total_percentage = ssc_percentage + hssc_percentage + NUMS_percentage;
+            result.value = total_percentage.toFixed(2);
+
+            if (isNaN(ssc_marks) || isNaN(ssc_total_marks) || isNaN(hssc_marks) || isNaN(hssc_total_marks) || isNaN(NUMS_marks)) {
+
+                alert("Please fill all the fields.");
+                return;
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
